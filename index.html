@@ -29,12 +29,104 @@
     a:hover {
       text-decoration: underline;
     }
+    #auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #auth-form {
+      text-align: center;
+      padding: 40px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    #auth-form input {
+      display: block;
+      width: 200px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #auth-form button {
+      margin-top: 10px;
+      padding: 10px 30px;
+      background: #0066cc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #auth-form button:hover {
+      background: #0052a3;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    #content {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1>SR Wire</h1>
-  <ul>
-    <li><a href="sr-api-wire.html">SR API Wireframe</a></li>
-  </ul>
+  <div id="auth-overlay">
+    <div id="auth-form">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="authenticate()">Login</button>
+      <p id="error" class="error"></p>
+    </div>
+  </div>
+  <div id="content">
+    <h1>SR Wire</h1>
+    <ul>
+      <li><a href="sr-api-wire.html">SR API Wireframe</a></li>
+    </ul>
+  </div>
+  <script>
+    const CREDENTIALS = {
+      username: 'admin',
+      password: 'srwire2024'
+    };
+
+    function authenticate() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
+        sessionStorage.setItem('authenticated', 'true');
+        showContent();
+      } else {
+        document.getElementById('error').textContent = 'Invalid credentials';
+      }
+    }
+
+    function showContent() {
+      document.getElementById('auth-overlay').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    }
+
+    function checkAuth() {
+      if (sessionStorage.getItem('authenticated') === 'true') {
+        showContent();
+      }
+    }
+
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') authenticate();
+    });
+
+    checkAuth();
+  </script>
 </body>
 </html>
