@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SR パンフレット ワイヤーフレーム</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #e8e8e8;
+      color: #333;
+      padding: 20px 10px;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      padding: 8px 32px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 2px solid #999;
+      background: #fff;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+
+    .tab-btn:last-child {
+      border-radius: 0 6px 6px 0;
+      border-left: none;
+    }
+
+    .tab-btn.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    .pamphlet {
+      width: 794px;
+      min-height: 1123px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .side {
+      display: none;
+    }
+
+    .side.active {
+      display: block;
+    }
+
+    /* ===== Wireframe Styles ===== */
+    .wire-section {
+      padding: 16px 28px;
+      border-bottom: 1px dashed #ccc;
+      position: relative;
+    }
+
+    .wire-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      position: absolute;
+      top: 4px;
+      right: 8px;
+      font-size: 8px;
+      color: #aaa;
+      background: #f5f5f5;
+      padding: 1px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .section-heading {
+      font-size: 12px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #333;
+      display: inline-block;
+    }
+
+    /* ===== Image Placeholder ===== */
+    .img-placeholder {
+      background: #e8e8e8;
+      border: 1.5px dashed #bbb;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 9px;
+      text-align: center;
+      line-height: 1.4;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .img-placeholder .img-icon {
+      font-size: 18px;
+      opacity: 0.4;
+    }
+
+    .img-placeholder .img-label {
+      font-weight: 600;
+      color: #888;
+      font-size: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .img-placeholder .img-note {
+      font-size: 8px;
+      color: #aaa;
+      max-width: 90%;
+    }
+
+    /* ===== Brand ===== */
+    .brand-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 28px;
+      border-bottom: 1px dashed #ccc;
+      position: relative;
+    }
+
+    .brand-logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    .brand-sub {
+      font-size: 9px;
+      color: #999;
+    }
+
+    /* ===== Hero ===== */
+    .hero-area {
+      padding: 20px 28px 16px;
+      background: #f8f8f8;
+      border-bottom: 1px dashed #ccc;
+      position: relative;
+    }
+
+    .hero-layout {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-image {
+      flex-shrink: 0;
+    }
+
+    .main-copy {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .sub-copy {
+      font-size: 10px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ===== Checklist ===== */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 4px 0;
+      font-size: 10px;
+      line-height: 1.5;
+      color: #444;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .check-box {
+      flex-shrink: 0;
+      width: 13px;
+      height: 13px;
+      border: 1.5px solid #bbb;
+      border-radius: 2px;
+      margin-top: 1px;
+    }
+
+    .checklist-layout {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .checklist-content {
+      flex: 1;
+    }
+
+    /* ===== 3 Solutions ===== */
+    .solutions-grid {
+      display: flex;
+      gap: 10px;
+    }
+
+    .solution-card {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .solution-num {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ccc;
+      margin-bottom: 2px;
+      line-height: 1;
+    }
+
+    .solution-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .solution-image {
+      margin-bottom: 6px;
+    }
+
+    .solution-desc {
+      font-size: 9px;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 6px;
+      flex: 1;
+    }
+
+    .solution-result {
+      font-size: 9px;
+      font-weight: 700;
+      color: #333;
+      background: #e8e8e8;
+      padding: 4px 6px;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    /* ===== Data Layers ===== */
+    .data-layers-layout {
+      display: flex;
+      gap: 16px;
+    }
+
+    .data-layers-left {
+      flex: 1;
+    }
+
+    .data-layers-diagram {
+      flex-shrink: 0;
+    }
+
+    .data-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin-bottom: 6px;
+    }
+
+    .data-tag-icon {
+      font-size: 13px;
+    }
+
+    .data-tag-text {
+      font-size: 10px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .data-tag-desc {
+      font-size: 9px;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    /* ===== CTA / Offer ===== */
+    .offer-area {
+      text-align: center;
+      padding: 14px 28px;
+      background: #f8f8f8;
+      position: relative;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background: #e8e8e8;
+      border: 1.5px dashed #bbb;
+      padding: 3px 12px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #666;
+      border-radius: 12px;
+      margin-bottom: 6px;
+    }
+
+    .offer-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    .offer-desc {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .qr-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .qr-placeholder {
+      width: 56px;
+      height: 56px;
+      background: #e8e8e8;
+      border: 1.5px dashed #bbb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: #999;
+    }
+
+    .qr-url {
+      font-size: 10px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* ===== BACK SIDE ===== */
+
+    /* Feature Table with visual */
+    .feature-layout {
+      display: flex;
+      gap: 16px;
+    }
+
+    .feature-table-wrap {
+      flex: 1;
+    }
+
+    .feature-visual {
+      flex-shrink: 0;
+    }
+
+    .integration-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+
+    .integration-table th {
+      background: #333;
+      color: #fff;
+      padding: 5px 10px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 9px;
+    }
+
+    .integration-table td {
+      padding: 5px 10px;
+      border-bottom: 1px solid #eee;
+      color: #555;
+    }
+
+    .integration-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .integration-table tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    /* CRM Integration */
+    .crm-layout {
+      display: flex;
+      gap: 16px;
+    }
+
+    .crm-screenshots {
+      flex: 1;
+    }
+
+    .crm-features {
+      flex: 1;
+    }
+
+    .crm-feature-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .crm-feature-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: #333;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .crm-feature-content {
+      flex: 1;
+    }
+
+    .crm-feature-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 2px;
+    }
+
+    .crm-feature-desc {
+      font-size: 9px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    /* Option */
+    .option-area {
+      background: #fafafa;
+    }
+
+    .option-layout {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .option-text {
+      flex: 1;
+    }
+
+    .option-desc {
+      font-size: 9px;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    /* Contact */
+    .contact-area {
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 3px;
+    }
+
+    .contact-desc {
+      font-size: 10px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .contact-qr-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .plan-offer {
+      margin-top: 8px;
+      padding: 6px 12px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      border: 1.5px dashed #bbb;
+    }
+
+    /* Footer */
+    .footer-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 28px;
+      background: #333;
+      color: #fff;
+    }
+
+    .footer-logo img {
+      height: 22px;
+      filter: brightness(10);
+    }
+
+    .footer-url {
+      font-size: 9px;
+      color: #ccc;
+      margin-top: 2px;
+    }
+
+    .footer-qr-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-qr-item {
+      text-align: center;
+    }
+
+    .footer-qr-item .qr-placeholder {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: none;
+      font-size: 7px;
+      color: #999;
+    }
+
+    .footer-qr-label {
+      font-size: 7px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+
+    /* Annotation */
+    .annotation {
+      font-size: 10px;
+      color: #bbb;
+      text-align: center;
+      margin-top: 10px;
+      padding: 6px;
+    }
+
+    /* Auth */
+    #auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #auth-form {
+      text-align: center;
+      padding: 40px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    #auth-form input {
+      display: block;
+      width: 200px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #auth-form button {
+      margin-top: 10px;
+      padding: 10px 30px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #auth-form button:hover {
+      background: #555;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    #content {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Auth -->
+  <div id="auth-overlay">
+    <div id="auth-form">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="authenticate()">Login</button>
+      <p id="error" class="error"></p>
+    </div>
+  </div>
+
+  <div id="content">
+    <p class="page-title">SalesRadar パンフレット ワイヤーフレーム ─ 展示会出展用（画像多め版）</p>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchSide('front')">表面</button>
+      <button class="tab-btn" onclick="switchSide('back')">裏面</button>
+    </div>
+
+    <div class="pamphlet">
+
+      <!-- ==================== FRONT ==================== -->
+      <div id="front" class="side active">
+
+        <!-- Brand Header -->
+        <div class="brand-area">
+          <span class="section-label">SECTION: ブランドライン</span>
+          <div class="brand-logo"><img src="logo.png" alt="SalesRadar"></div>
+          <p class="brand-sub">FUTUREWOODS株式会社</p>
+        </div>
+
+        <!-- Hero: Headline + Laptop Image -->
+        <div class="hero-area">
+          <span class="section-label">SECTION: ヒーロー（キャッチコピー + メインビジュアル）</span>
+          <div class="hero-layout">
+            <div class="hero-text">
+              <p class="main-copy">優良顧客は、<br>あなたの側に潜んでいる。</p>
+              <p class="sub-copy">
+                「どこに・誰に・どう攻めるか」をデータで設計する、<br>BtoB営業戦略プラットフォーム。<br>
+                SalesRadarが、眠っている勝ちパターンを可視化し、<br>組織の再現性ある営業を実現します。
+              </p>
+            </div>
+            <div class="hero-image">
+              <div class="img-placeholder" style="width: 300px; height: 190px;">
+                <span class="img-icon">💻</span>
+                <span class="img-label">IMAGE</span>
+                <span class="img-note">ノートPC + SalesRadar<br>ダッシュボード画面キャプチャ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checklist + Illustration -->
+        <div class="wire-section">
+          <span class="section-label">SECTION: 課題チェックリスト</span>
+          <div class="checklist-layout">
+            <div class="checklist-content">
+              <p class="section-heading">御社の営業、こんな状態になっていませんか？</p>
+              <ul class="checklist">
+                <li><span class="check-box"></span>新規ターゲットの選定が、担当者の経験や勘に依存している</li>
+                <li><span class="check-box"></span>トップ営業の成功パターンが言語化・再現できていない</li>
+                <li><span class="check-box"></span>優良顧客に「似た企業」をどう探すか、属人的で仕組みになっていない</li>
+                <li><span class="check-box"></span>商談化率が低く、「数を打てば当たる」式のアプローチから脱却できていない</li>
+                <li><span class="check-box"></span>データが散在・陳腐化していて、戦略の土台として使えていない</li>
+              </ul>
+            </div>
+            <div class="img-placeholder" style="width: 140px; height: 140px; flex-shrink: 0; align-self: center;">
+              <span class="img-icon">🤔</span>
+              <span class="img-label">ILLUST</span>
+              <span class="img-note">悩むビジネスパーソン<br>イラスト</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Solutions with Images -->
+        <div class="wire-section">
+          <span class="section-label">SECTION: SalesRadarが変えること</span>
+          <p class="section-heading">SalesRadarが変えること</p>
+          <div class="solutions-grid">
+
+            <div class="solution-card">
+              <div class="solution-num">01</div>
+              <div class="solution-title">「誰を狙うか」を<br>データで決める</div>
+              <div class="solution-image">
+                <div class="img-placeholder" style="width: 100%; height: 80px;">
+                  <span class="img-icon">🎯</span>
+                  <span class="img-label">IMAGE</span>
+                  <span class="img-note">AI類似企業分析<br>画面キャプチャ</span>
+                </div>
+              </div>
+              <p class="solution-desc">優良顧客リストをアップロードするだけで、AIが共通特徴を抽出して類似企業を自動特定。100項目以上の企業情報×Webデータ×人物・部署データを組み合わせ、受注確度の高い企業を絞り込む。</p>
+              <div class="solution-result">ターゲット選定を、<br>勘から設計へ</div>
+            </div>
+
+            <div class="solution-card">
+              <div class="solution-num">02</div>
+              <div class="solution-title">「どこに白地があるか」<br>を可視化する</div>
+              <div class="solution-image">
+                <div class="img-placeholder" style="width: 100%; height: 80px;">
+                  <span class="img-icon">📊</span>
+                  <span class="img-label">IMAGE</span>
+                  <span class="img-note">残マーケット分析<br>画面キャプチャ</span>
+                </div>
+              </div>
+              <p class="solution-desc">国内最大級のデータベースと自社の既存顧客データを照合し、まだアプローチできていない市場の全容を把握。残マーケットのあぶり出しと優先順位付けを一気に実行。</p>
+              <div class="solution-result">攻めるべき市場を、<br>データで定義する</div>
+            </div>
+
+            <div class="solution-card">
+              <div class="solution-num">03</div>
+              <div class="solution-title">「戦略」をそのまま<br>実行につなぐ</div>
+              <div class="solution-image">
+                <div class="img-placeholder" style="width: 100%; height: 80px;">
+                  <span class="img-icon">🔄</span>
+                  <span class="img-label">IMAGE</span>
+                  <span class="img-note">CRM連携フロー<br>図解 or キャプチャ</span>
+                </div>
+              </div>
+              <p class="solution-desc">名寄せ・データクレンジングでCRMを整備し、Salesforce・HubSpot・Kintoneへ直接同期。戦略立案から実行まで、同じデータ基盤の上で完結する。</p>
+              <div class="solution-result">立案と実行のサイクルを、<br>一つのプラットフォームで</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Data Layers + Diagram -->
+        <div class="wire-section">
+          <span class="section-label">SECTION: 3つのデータ層</span>
+          <p class="section-heading">SalesRadarが持つ3つのデータ層</p>
+          <p style="font-size: 9px; color: #666; margin-bottom: 10px;">「何者か」「どう動いているか」「誰に届けるか」——3つの視点で企業を捉える。</p>
+          <div class="data-layers-layout">
+            <div class="data-layers-left">
+              <!-- Web Data -->
+              <div class="data-tag">
+                <span class="data-tag-icon">🌐</span>
+                <span class="data-tag-text">Webデータ（企業の事業・デジタル行動）</span>
+              </div>
+              <p class="data-tag-desc">Webサイトの内容・掲載キーワード・運営サービスを構造化して保有。業種・規模だけでなく「何をしている会社か」でターゲットを絞り込める。</p>
+              <!-- Session Data -->
+              <div class="data-tag">
+                <span class="data-tag-icon">👁️</span>
+                <span class="data-tag-text">セッションデータ（広告投資・マーケ動向）</span>
+              </div>
+              <p class="data-tag-desc">ブランドサイトへの流入経路データから、各企業の広告投資規模を推定。「今まさにマーケティング投資を積極化している企業」への絞り込みが可能。</p>
+              <!-- Person Data -->
+              <div class="data-tag">
+                <span class="data-tag-icon">👤</span>
+                <span class="data-tag-text">人物・部署データ（意思決定者への到達）</span>
+              </div>
+              <p class="data-tag-desc">部署構成・役職・担当者情報を保有。営業部長・マーケ責任者など、意思決定者に直接届くアプローチを設計できる。</p>
+            </div>
+            <div class="data-layers-diagram">
+              <div class="img-placeholder" style="width: 220px; height: 220px;">
+                <span class="img-icon">🔁</span>
+                <span class="img-label">DIAGRAM</span>
+                <span class="img-note">3つのデータ層の関係図<br>（循環図 / ベン図）<br>企業情報 × Web × セッション<br>× 人物データ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer + QR -->
+        <div class="offer-area">
+          <span class="section-label">SECTION: 当日限定特典 + CTA</span>
+          <div class="offer-badge">当日限定特典</div>
+          <p class="offer-title">Marketing Week 来場者限定｜初期費用を全額免除</p>
+          <p class="offer-desc">本日ブースにてご相談・お申込みのお客様に限り、初期費用を無料といたします。</p>
+          <div class="qr-area">
+            <div class="qr-placeholder">QR Code</div>
+            <div>
+              <p class="qr-url">radar.futurewoods.co.jp</p>
+              <p style="font-size: 11px; color: #999; margin-top: 4px;">デモ申込・資料請求</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================== BACK ==================== -->
+      <div id="back" class="side">
+
+        <!-- Feature Table + Illustration -->
+        <div class="wire-section">
+          <span class="section-label">SECTION: SalesRadarでできること（機能一覧 + ビジュアル）</span>
+          <p class="section-heading">SalesRadarでできること</p>
+          <div class="feature-layout">
+            <div class="feature-table-wrap">
+              <table class="integration-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>機能</th>
+                    <th>効果</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>🗂️</td>
+                    <td>名寄せ・データクレンジング</td>
+                    <td>散在・重複データを即座に統合、100項目以上の情報を自動付与</td>
+                  </tr>
+                  <tr>
+                    <td>🎯</td>
+                    <td>AI類似企業分析・ABM</td>
+                    <td>優良顧客の勝ちパターンを可視化し、次のターゲットを自動抽出</td>
+                  </tr>
+                  <tr>
+                    <td>⚡</td>
+                    <td>高精度リスト作成</td>
+                    <td>40以上の検索軸で条件を自由に組み合わせ、15分でリスト完成</td>
+                  </tr>
+                  <tr>
+                    <td>🔄</td>
+                    <td>SFA/CRM連携</td>
+                    <td>Salesforce・HubSpot・Kintoneへ追加費用なしで直接同期</td>
+                  </tr>
+                  <tr>
+                    <td>🔌</td>
+                    <td>API連携</td>
+                    <td>自社システムとのデータ連携・自動化にも対応</td>
+                  </tr>
+                  <tr>
+                    <td>📊</td>
+                    <td>セッションデータ活用</td>
+                    <td>広告投資状況から企業のマーケ積極度を把握してターゲティング</td>
+                  </tr>
+                  <tr>
+                    <td>📬</td>
+                    <td>フォームアプローチ</td>
+                    <td>作成したリストで企業フォームへの大量DM送信をそのまま実行</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="feature-visual" style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="img-placeholder" style="width: 180px; height: 100px;">
+                <span class="img-icon">👩‍💼</span>
+                <span class="img-label">ILLUST</span>
+                <span class="img-note">データを活用する<br>ビジネスパーソン</span>
+              </div>
+              <div class="img-placeholder" style="width: 180px; height: 100px;">
+                <span class="img-icon">📈</span>
+                <span class="img-label">ILLUST</span>
+                <span class="img-note">成果が上がるイメージ<br>グラフ / アイコン</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM Integration with Screenshots -->
+        <div class="wire-section" style="background: #f4f6f9;">
+          <span class="section-label">SECTION: SFA/CRM連携（スクリーンショット付き）</span>
+          <p class="section-heading">Salesforce・HubSpot・Kintone 連携でできること</p>
+          <div class="crm-layout">
+            <div class="crm-screenshots">
+              <div class="img-placeholder" style="width: 100%; height: 130px; margin-bottom: 8px;">
+                <span class="img-icon">🖥️</span>
+                <span class="img-label">SCREENSHOT</span>
+                <span class="img-note">Salesforce上でSalesRadarデータを<br>展開している画面キャプチャ<br>（名寄せ後のリード一覧）</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <div class="img-placeholder" style="flex: 1; height: 80px;">
+                  <span class="img-icon">📊</span>
+                  <span class="img-label">SCREENSHOT</span>
+                  <span class="img-note">レポート /<br>ダッシュボード</span>
+                </div>
+                <div class="img-placeholder" style="flex: 1; height: 80px;">
+                  <span class="img-icon">📉</span>
+                  <span class="img-label">SCREENSHOT</span>
+                  <span class="img-note">グラフ / チャート<br>活用イメージ</span>
+                </div>
+              </div>
+            </div>
+            <div class="crm-features">
+              <div class="crm-feature-item">
+                <div class="crm-feature-num">1</div>
+                <div class="crm-feature-content">
+                  <p class="crm-feature-title">法人番号の付与（名寄せ／正規化）</p>
+                  <p class="crm-feature-desc">散在するリード・取引先データに法人番号を付与。表記揺れを自動吸収し、正確な名寄せを実現。</p>
+                </div>
+              </div>
+              <div class="crm-feature-item">
+                <div class="crm-feature-num">2</div>
+                <div class="crm-feature-content">
+                  <p class="crm-feature-title">法人情報の最新化</p>
+                  <p class="crm-feature-desc">法人情報を常に最新の状態に更新。陳腐化した企業データをリフレッシュ。</p>
+                </div>
+              </div>
+              <div class="crm-feature-item">
+                <div class="crm-feature-num">3</div>
+                <div class="crm-feature-content">
+                  <p class="crm-feature-title">重複データの自動統合</p>
+                  <p class="crm-feature-desc">リード・取引先の重複を検出し自動統合。CRMをクリーンな状態に保つ。</p>
+                </div>
+              </div>
+              <div style="margin-top: 4px;">
+                <span style="font-size: 10px; font-weight: 700; color: #222; background: #e8e8e8; padding: 4px 10px; border-radius: 3px;">追加費用 ¥0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Option: Form Approach -->
+        <div class="wire-section option-area">
+          <span class="section-label">SECTION: オプション</span>
+          <p class="section-heading">オプション：大量フォームアプローチ</p>
+          <div class="option-layout">
+            <div class="option-text">
+              <p class="option-desc">SalesRadarで作成した精度の高いリストを使って、ターゲット企業のお問い合わせフォームへ自動でDMを送信。テレアポ・メールに加えた新たな接点チャネルとして、大量アプローチを短時間で実現します。</p>
+              <p style="font-size: 9px; color: #666;">送信件数・プランの詳細はスタッフまたは下記URLよりご相談ください。</p>
+            </div>
+            <div class="img-placeholder" style="width: 160px; height: 90px; flex-shrink: 0;">
+              <span class="img-icon">📬</span>
+              <span class="img-label">IMAGE</span>
+              <span class="img-note">フォームDM送信<br>フローイメージ図</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact / CTA -->
+        <div class="wire-section contact-area">
+          <span class="section-label">SECTION: お問い合わせ・デモ申込</span>
+          <p class="contact-title">まずは無料デモをご体験ください</p>
+          <p class="contact-desc">実際のデータを使った操作デモを30分で実施します。<br>料金・プランの詳細もお気軽にお問い合わせください。</p>
+          <div class="plan-offer">🎁 本日ご相談の方は初期費用を全額免除</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-area">
+          <div>
+            <div class="footer-logo"><img src="logo.png" alt="SalesRadar"></div>
+            <p class="footer-url">https://radar.futurewoods.co.jp/</p>
+          </div>
+          <div class="footer-qr-group">
+            <div class="footer-qr-item">
+              <div class="qr-placeholder">QR</div>
+              <p class="footer-qr-label">サービスサイト</p>
+            </div>
+            <div class="footer-qr-item">
+              <div class="qr-placeholder">QR</div>
+              <p class="footer-qr-label">デモ申込</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="annotation">wireframe — for layout reference only</p>
+  </div>
+
+  <script>
+    const CREDENTIALS = {
+      username: 'admin',
+      password: 'srwire2024'
+    };
+
+    function authenticate() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
+        sessionStorage.setItem('authenticated', 'true');
+        showContent();
+      } else {
+        document.getElementById('error').textContent = 'Invalid credentials';
+      }
+    }
+
+    function showContent() {
+      document.getElementById('auth-overlay').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+    }
+
+    function checkAuth() {
+      if (sessionStorage.getItem('authenticated') === 'true') {
+        showContent();
+      }
+    }
+
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') authenticate();
+    });
+
+    checkAuth();
+
+    function switchSide(side) {
+      document.querySelectorAll('.side').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(side).classList.add('active');
+      const idx = side === 'front' ? 0 : 1;
+      document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    }
+  </script>
+</body>
+</html>
