@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SalesRadar ウェビナー アーカイブ視聴 — ワイヤーフレーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f5f5f5;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── WIREFRAME UTILITIES ── */
+  .section-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+    border: 1px solid #bbb;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ══ HEADER ══ */
+  header {
+    background: #fff;
+    border-bottom: 1.5px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .logo-wf {
+    width: 140px;
+    height: 32px;
+    background: #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #333;
+  }
+  nav { display: flex; align-items: center; gap: 28px; }
+  nav a {
+    font-size: 13px;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  nav a.active { color: #111; border-bottom: 1.5px solid #111; }
+  .header-btns { display: flex; gap: 10px; }
+  .btn-wf {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .btn-fill { background: #333; color: #fff; border: none; }
+  .btn-outline { background: transparent; color: #333; border: 1.5px solid #333; }
+
+  /* ══ BREADCRUMB ══ */
+  .breadcrumb {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px 40px;
+  }
+  .breadcrumb-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 11px;
+    color: #888;
+  }
+  .breadcrumb-inner a { color: #555; text-decoration: none; }
+  .breadcrumb-inner span { margin: 0 6px; color: #ccc; }
+
+  /* ══ VIEWER LAYOUT ══ */
+  .viewer {
+    padding: 40px;
+  }
+  .viewer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Player ── */
+  .player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #1a1a1a;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    gap: 10px;
+    border: 1.5px solid #000;
+  }
+  .player .play-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ccc;
+  }
+  .player .player-note {
+    font-size: 12px;
+    font-style: italic;
+    color: #aaa;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .video-meta { margin-top: 24px; }
+  .video-badges { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid #999;
+    color: #333;
+    background: #f0f0f0;
+  }
+  .video-meta h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+    margin-bottom: 12px;
+  }
+  .video-info {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 16px;
+  }
+  .video-desc h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    margin: 20px 0 8px;
+  }
+  .video-desc p {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .video-desc ul { list-style: none; margin: 6px 0 10px; }
+  .video-desc ul li {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.8;
+    padding-left: 16px;
+    position: relative;
+  }
+  .video-desc ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #999;
+  }
+
+  /* ── Material download ── */
+  .material-box {
+    background: #fff;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .material-box .mat-text { font-size: 13px; color: #111; font-weight: 700; }
+  .material-box .mat-sub { font-size: 11px; color: #888; font-weight: 400; margin-top: 2px; }
+  .material-btn {
+    height: 40px;
+    padding: 0 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* ══ SIDEBAR ══ */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .side-block {
+    background: #fff;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .side-block h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .related-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f2f2f2;
+    cursor: pointer;
+  }
+  .related-item:last-child { border-bottom: none; }
+  .related-thumb {
+    width: 80px;
+    height: 48px;
+    flex-shrink: 0;
+    background: #ddd;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #333;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .related-text { font-size: 12px; color: #111; line-height: 1.5; }
+  .related-text .r-date { font-size: 10px; color: #888; margin-top: 3px; }
+
+  /* ── Sidebar CTA ── */
+  .side-cta {
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .side-cta h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    border: none;
+    padding: 0;
+  }
+  .side-cta p {
+    font-size: 12px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .side-cta-btn {
+    width: 100%;
+    height: 44px;
+    background: #fff;
+    color: #111;
+    border: none;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+  .side-cta-btn.outline { background: transparent; color: #fff; border: 1.5px solid #fff; margin-bottom: 0; }
+
+  /* ══ BOTTOM CTA ══ */
+  .cta-section { background: #2a2a2a; padding: 64px 40px; margin-top: 20px; }
+  .cta-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+  .cta-inner h2 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.4; }
+  .cta-inner p { font-size: 14px; color: #ddd; margin-bottom: 32px; line-height: 1.75; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; }
+  .cta-btn {
+    height: 50px; padding: 0 32px;
+    border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .cta-btn.fill { background: #fff; color: #111; border: none; }
+  .cta-btn.outline { background: transparent; color: #fff; border: 2px solid #fff; }
+
+  /* ══ FOOTER ══ */
+  footer {
+    background: #1a1a1a;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    width: 120px; height: 28px;
+    background: #333; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: #ddd;
+  }
+  footer p { font-size: 11px; color: #bbb; }
+
+  /* ══ ANNOTATION BAR ══ */
+  .annotation {
+    background: #fffbe6;
+    border-left: 3px solid #ccc;
+    padding: 8px 16px;
+    font-size: 11px;
+    color: #333;
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* ══ AUTH ══ */
+  #auth-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff; display: flex; justify-content: center; align-items: center; z-index: 9999;
+  }
+  #auth-form {
+    text-align: center; padding: 40px;
+    border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;
+  }
+  #auth-form input {
+    display: block; width: 200px; margin: 10px auto;
+    padding: 10px; border: 1px solid #ccc; border-radius: 4px;
+  }
+  #auth-form button {
+    margin-top: 10px; padding: 10px 30px;
+    background: #0066cc; color: #fff; border: none; border-radius: 4px; cursor: pointer;
+  }
+  #auth-form button:hover { background: #0052a3; }
+  .auth-error { color: red; margin-top: 10px; }
+  #content { display: none; }
+
+  @media (max-width: 900px) {
+    .viewer-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="auth-overlay">
+  <div id="auth-form">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="authenticate()">Login</button>
+    <p id="error" class="auth-error"></p>
+  </div>
+</div>
+<div id="content">
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <div class="logo-wf">[ SalesRadar Logo ]</div>
+    <nav>
+      <a href="#">機能</a>
+      <a href="#">導入事例</a>
+      <a href="#">お役立ち記事</a>
+      <a href="sr-webinar-wire.html" class="active">ウェビナー</a>
+      <a href="#">お知らせ</a>
+    </nav>
+    <div class="header-btns">
+      <button class="btn-wf btn-fill">資料をダウンロード →</button>
+      <button class="btn-wf btn-outline">無料相談 →</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ BREADCRUMB ══ -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="sr-webinar-wire.html">ウェビナー</a><span>›</span><a href="sr-webinar-wire.html#archive-form">アーカイブ</a><span>›</span>〔このアーカイブのタイトル〕
+  </div>
+</div>
+<div class="annotation">▲ 着地ページ：SendGridのメール内「視聴URL」からこのページ（/webinar/archive/{slug}/）に着地。登録済み判定済みの状態でアクセスされる想定</div>
+
+<!-- ══ VIEWER ══ -->
+<div class="viewer">
+  <div class="viewer-inner">
+
+    <!-- ── Main ── -->
+    <div class="viewer-main">
+      <div class="player">
+        <div class="play-icon">▶</div>
+        <div class="player-note">YouTube 埋め込みプレーヤー（16:9）<br>限定公開動画を iframe で表示<br>（rel=0 / modestbranding 推奨）</div>
+      </div>
+
+      <div class="video-meta">
+        <div class="video-badges">
+          <span class="badge">アーカイブ</span>
+          <span class="badge">約60分</span>
+        </div>
+        <h1>〔アーカイブタイトルが入ります〕<br>優良顧客の勝ちパターンを可視化する</h1>
+        <p class="video-info">
+          開催日：2026.0X.XX　／　登壇：〔登壇者名・所属〕　／　収録時間：約60分
+        </p>
+
+        <div class="video-desc">
+          <h2>このウェビナーの概要</h2>
+          <p>〔セミナー概要が入ります〕SalesRadarを使ったターゲット選定の考え方を、デモを交えて解説します。これから類似企業分析を始めたい方向けの内容です。</p>
+          <h2>こんな方におすすめ</h2>
+          <ul>
+            <li>新規ターゲットの選定が担当者の勘に依存している</li>
+            <li>優良顧客に似た企業をデータで探したい</li>
+            <li>SalesRadarの活用イメージを具体的に知りたい</li>
+          </ul>
+          <h2>アジェンダ</h2>
+          <ul>
+            <li>00:00 イントロダクション</li>
+            <li>05:00 類似企業分析の考え方</li>
+            <li>20:00 SalesRadar 操作デモ</li>
+            <li>45:00 Q&amp;A</li>
+          </ul>
+        </div>
+
+        <div class="material-box">
+          <div>
+            <div class="mat-text">📄 当日の投影資料をダウンロード</div>
+            <div class="mat-sub">PDF / 登録済みのため追加入力なしでDL可</div>
+          </div>
+          <button class="material-btn">資料をダウンロード →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Sidebar ── -->
+    <div class="sidebar">
+      <div class="side-block">
+        <h3>他のアーカイブを見る</h3>
+        <div class="related-item">
+          <div class="related-thumb">YouTube<br>サムネ</div>
+          <div class="related-text">残マーケット分析で白地を見つける<div class="r-date">2026.0X.XX</div></div>
+        </div>
+        <div class="related-item">
+          <div class="related-thumb">YouTube<br>サムネ</div>
+          <div class="related-text">API連携でデータ活用を自動化する<div class="r-date">2026.0X.XX</div></div>
+        </div>
+        <div class="related-item">
+          <div class="related-thumb">YouTube<br>サムネ</div>
+          <div class="related-text">CRM連携でデータ基盤を整える<div class="r-date">2026.0X.XX</div></div>
+        </div>
+      </div>
+
+      <div class="side-cta">
+        <h3>SalesRadarを体験する</h3>
+        <p>動画で見た機能を、実データの操作デモで確認できます。</p>
+        <button class="side-cta-btn">無料デモを申し込む →</button>
+        <button class="side-cta-btn outline">資料をダウンロード →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="annotation">▲ Viewer：左に YouTube 埋め込みプレーヤー＋概要・アジェンダ・資料DL、右に関連アーカイブとデモ誘導CTA。視聴ページからデモ・資料へ送客する</div>
+
+<!-- ══ BOTTOM CTA ══ -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>気になった機能は、デモで体験</h2>
+    <p>実際のデータを使った操作デモを30分で実施します。導入のご相談もお気軽にどうぞ。</p>
+    <div class="cta-btns">
+      <button class="cta-btn fill">無料デモを申し込む →</button>
+      <button class="cta-btn outline">他のアーカイブを見る →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">[ SalesRadar Logo ]</div>
+  <p>© 2026 FutureWoods Inc. — 既存フッターと共通</p>
+</footer>
+
+</div>
+<script>
+  const CREDENTIALS = {
+    username: 'admin',
+    password: 'srwire2024'
+  };
+
+  function authenticate() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === CREDENTIALS.username && password === CREDENTIALS.password) {
+      sessionStorage.setItem('authenticated', 'true');
+      showContent();
+    } else {
+      document.getElementById('error').textContent = 'Invalid credentials';
+    }
+  }
+
+  function showContent() {
+    document.getElementById('auth-overlay').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+  }
+
+  function checkAuth() {
+    if (sessionStorage.getItem('authenticated') === 'true') {
+      showContent();
+    }
+  }
+
+  document.getElementById('password').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') authenticate();
+  });
+
+  checkAuth();
+</script>
+</body>
+</html>

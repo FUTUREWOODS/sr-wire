@@ -697,7 +697,7 @@
     <div class="archive-grid">
 
       <div class="archive-card">
-        <div class="archive-thumb">サムネイル画像<span class="archive-lock">🔒 要登録</span></div>
+        <div class="archive-thumb">YouTubeサムネイル<span class="archive-lock">🔒 要登録</span></div>
         <div class="archive-body">
           <div class="archive-meta">
             <span class="badge">アーカイブ</span>
@@ -710,7 +710,7 @@
       </div>
 
       <div class="archive-card">
-        <div class="archive-thumb">サムネイル画像<span class="archive-lock">🔒 要登録</span></div>
+        <div class="archive-thumb">YouTubeサムネイル<span class="archive-lock">🔒 要登録</span></div>
         <div class="archive-body">
           <div class="archive-meta">
             <span class="badge">アーカイブ</span>
@@ -723,7 +723,7 @@
       </div>
 
       <div class="archive-card">
-        <div class="archive-thumb">サムネイル画像<span class="archive-lock">🔒 要登録</span></div>
+        <div class="archive-thumb">YouTubeサムネイル<span class="archive-lock">🔒 要登録</span></div>
         <div class="archive-body">
           <div class="archive-meta">
             <span class="badge">アーカイブ</span>
@@ -738,7 +738,7 @@
     </div>
   </div>
 </section>
-<div class="annotation">▲ Archive：過去回をカードグリッドで一覧。各カードは「要登録」でゲート → クリックで下部のアーカイブ視聴フォームへスクロール誘導（どのアーカイブから来たかをフォームに引き継ぐ）。登録済みユーザーはゲートを外してそのまま視聴</div>
+<div class="annotation">▲ Archive：過去回をカードグリッドで一覧。サムネは YouTube サムネイル流用可。各カードは「要登録」でゲート → クリックで下部のアーカイブ視聴フォームへスクロール誘導（どのアーカイブから来たかをフォームに引き継ぐ）。登録済みユーザーはゲートを外してそのまま視聴。配信本体は YouTube（限定公開）埋め込み</div>
 
 <!-- ══ LEAD FORM ══ -->
 <section class="form-section" id="archive-form">
@@ -805,7 +805,7 @@
     </div>
   </div>
 </section>
-<div class="annotation">▲ Form：アーカイブ視聴専用のリード獲得フォーム。アーカイブカードの「視聴する」からここへスクロール誘導し、どのアーカイブから来たかを hidden field で自動セット（視聴アクションをアーカイブ単位で記録）。送信を起点に SendGrid（Transactional Email）から視聴URLを自動送付。会社名・氏名・メール＋同意が必須。「開催のお知らせを受け取る」opt-in は将来セミナー通知リストへの登録を兼ねる。登録済みユーザーは Cookie 判定で2回目以降フォームを出さずワンクリック視聴（視聴ログのみ記録）</div>
+<div class="annotation">▲ Form：アーカイブ視聴専用のリード獲得フォーム。アーカイブカードの「視聴する」からここへスクロール誘導し、どのアーカイブから来たかを hidden field で自動セット（視聴アクションをアーカイブ単位で記録）。送信を起点に SendGrid（Transactional Email）から視聴ページURLを自動送付（視聴ページ＝YouTube限定公開の埋め込み）。会社名・氏名・メール＋同意が必須。「開催のお知らせを受け取る」opt-in は将来セミナー通知リストへの登録を兼ねる。登録済みユーザーは Cookie 判定で2回目以降フォームを出さずワンクリック視聴（視聴ログのみ記録）</div>
 
 <!-- ══ FLOW ══ -->
 <section class="alt">
