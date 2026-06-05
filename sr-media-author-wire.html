@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SalesRadar オウンドメディア 監修者コンポーネント — ワイヤーフレーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: #000; font-size: 14px; line-height: 1.6; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 36px 40px 80px; }
+  .note { background: #eef; border: 1px solid #dde; border-radius: 6px; padding: 10px 14px; font-size: 11px; color: #557; margin-bottom: 28px; }
+  .note b { color: #336; }
+  .section-label { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #333; border: 1px solid #bbb; padding: 2px 8px; border-radius: 2px; margin-bottom: 12px; }
+
+  /* 記事タイトル・本文ダミー */
+  .article-title { font-size: 26px; font-weight: 700; color: #111; line-height: 1.5; margin-bottom: 14px; }
+  .dummy-body { background: repeating-linear-gradient(#fafafa, #fafafa 13px, #f0f0f0 13px, #f0f0f0 14px); border: 1px dashed #ccc; border-radius: 6px; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #999; font-style: italic; margin: 26px 0; }
+
+  /* ══ ① 冒頭バイライン（コンパクト） ══ */
+  .byline { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; }
+  .byline-avatar { width: 36px; height: 36px; border-radius: 50%; background: #ddd; border: 1.5px solid #bbb; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 8px; color: #666; font-style: italic; }
+  .byline-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .byline-text { font-size: 12px; color: #555; }
+  .byline-text .role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: #888; }
+  .byline-text .name { font-size: 13px; font-weight: 700; color: #111; }
+  .byline-text .name a { color: #111; text-decoration: none; }
+  .byline-date { margin-left: auto; font-size: 11px; color: #999; text-align: right; flex-shrink: 0; }
+
+  /* ══ ② 末尾 監修者カード（フル） ══ */
+  .author-card { background: #fff; border: 1.5px solid #ddd; border-radius: 12px; padding: 22px 24px; margin-top: 8px; }
+  .author-card .ac-head { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #888; margin-bottom: 16px; }
+  .author-body { display: flex; gap: 18px; align-items: flex-start; }
+  .author-avatar { width: 72px; height: 72px; border-radius: 50%; background: #ddd; border: 1.5px solid #bbb; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #666; font-style: italic; }
+  .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .author-main { flex: 1; min-width: 0; }
+  .author-name { font-size: 16px; font-weight: 700; color: #111; }
+  .author-name a { color: #111; text-decoration: none; }
+  .author-role { font-size: 11px; color: #777; margin-top: 3px; }
+  .author-bio { font-size: 12.5px; color: #444; line-height: 1.8; margin: 8px 0 14px; }
+  .author-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .author-links a { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 14px; border-radius: 16px; font-size: 11px; font-weight: 700; text-decoration: none; }
+  .lk-profile { border: 1.5px solid #333; color: #333; }
+  .lk-x { background: #111; color: #fff; }
+  .lk-note { background: #41c9b4; color: #fff; }
+
+  /* レスポンシブ */
+  @media (max-width: 600px) {
+    .wrap { padding: 24px 18px 60px; }
+    .author-body { flex-direction: column; align-items: center; text-align: center; }
+    .author-links { justify-content: center; }
+    .byline-date { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="note">
+    <b>監修者コンポーネント ワイヤー</b>｜microCMS の author スキーマ
+    （<code>name / slug / bio / avatar.url / twitter / revisedAt</code> ＋ 判定用 <code>type</code> / <code>role</code>）を受け取る前提。
+    記事ページ内の <b>①冒頭バイライン</b> と <b>②末尾フルカード</b> の2か所で使い回す想定。
+    下に <b>組織（編集部）</b>と<b>個人</b>の2バリエーションを掲載。
+  </div>
+
+  <!-- ===== 記事ヘッダ ===== -->
+  <div class="article-title">〔記事タイトル〕ABMで成果を出すための優良顧客リストの作り方</div>
+
+  <!-- ① 冒頭バイライン -->
+  <div class="byline">
+    <div class="byline-avatar">
+      <!-- avatar.url -->
+      <img src="https://images.microcms-assets.io/assets/ad1f6001a55440d1b5a22fce6e18b3ef/a89c137a57104d78925891fa4f309153/sr-round-logo.png" alt="SalesRadar編集部" width="36" height="36">
+    </div>
+    <div class="byline-text">
+      <div class="role">監修</div>
+      <div class="name"><a href="/media/author/sales-radar">SalesRadar編集部</a></div>
+    </div>
+    <div class="byline-date">
+      公開 2025.11.27<br>更新 2025.12.25
+    </div>
+  </div>
+
+  <!-- ===== 本文（ダミー） ===== -->
+  <div class="dummy-body">記事本文エリア</div>
+
+  <!-- ② 末尾 監修者カード -->
+  <div class="section-label">Supervisor</div>
+  <div class="author-card">
+    <div class="ac-head">この記事の監修者</div>
+    <div class="author-body">
+      <div class="author-avatar">
+        <!-- avatar.url（width/height をそのまま指定しCLS防止） -->
+        <img src="https://images.microcms-assets.io/assets/ad1f6001a55440d1b5a22fce6e18b3ef/a89c137a57104d78925891fa4f309153/sr-round-logo.png" alt="SalesRadar編集部" width="72" height="72">
+      </div>
+      <div class="author-main">
+        <!-- name + slug 詳細リンク -->
+        <div class="author-name"><a href="/media/author/sales-radar">SalesRadar編集部</a></div>
+        <!-- bio -->
+        <p class="author-bio">SalesRadar編集部は、株式会社FUTUREWOODSが運営する企業データベースサービス「SalesRadar」の公式メディアチームです。3,500社以上のマーケティング支援実績をもとに、ABM・リード獲得・営業効率化に関する最新情報と実践ノウハウを発信しています。</p>
+        <div class="author-links">
+          <!-- slug -->
+          <a class="lk-profile" href="/media/author/sales-radar">プロフィール ›</a>
+          <!-- twitter（@は付けず値をそのまま結合） -->
+          <a class="lk-x" href="https://x.com/sales_radar" target="_blank" rel="noopener">𝕏 @sales_radar</a>
+          <!-- note（スキーマ拡張） -->
+          <a class="lk-note" href="https://note.com/sales_radar" target="_blank" rel="noopener">note</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 末尾 監修者カード（個人パターン｜type=person・role入り） -->
+  <div class="section-label" style="margin-top:40px;">Supervisor / Person</div>
+  <div class="author-card">
+    <div class="ac-head">この記事の監修者</div>
+    <div class="author-body">
+      <div class="author-avatar">顔写真</div>
+      <div class="author-main">
+        <div class="author-name"><a href="/media/author/taro-yamada">〔監修者名〕山田 太郎</a></div>
+        <!-- role：個人のときだけ表示（組織のときは空） -->
+        <div class="author-role">株式会社FUTUREWOODS ／ マーケティング責任者</div>
+        <p class="author-bio">〔プロフィール〕BtoB営業・マーケティングのデータ活用支援に10年従事。ABM設計とリード獲得戦略を専門とし、これまで200社以上の支援実績を持つ。</p>
+        <div class="author-links">
+          <a class="lk-profile" href="/media/author/taro-yamada">プロフィール ›</a>
+          <a class="lk-x" href="https://x.com/taro_yamada" target="_blank" rel="noopener">𝕏 @taro_yamada</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
